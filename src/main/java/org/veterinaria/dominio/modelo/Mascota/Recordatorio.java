@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Vacuna {
-  private String idVacuna;
-  private String vacuna;
+public class Recordatorio {
   private String fecha;
+  private String tipo;
+  private String detalle;
 }

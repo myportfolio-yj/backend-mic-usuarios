@@ -14,5 +14,6 @@ public interface IClienteRepositorio {
   ClienteEntidad actualizarCliente(String idCliente, ClienteEntidad cliente);
 
   ClienteEntidad eliminarCliente(String idCliente);
+
   ClienteEntidad actualizarPassword(String idCliente, ClienteEntidad cliente);
 }

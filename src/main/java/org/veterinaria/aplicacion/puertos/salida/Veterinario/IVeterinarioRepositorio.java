@@ -14,5 +14,6 @@ public interface IVeterinarioRepositorio {
   VeterinarioEntidad actualizarVeterinario(String idVeterinario, VeterinarioEntidad veterinario);
 
   VeterinarioEntidad eliminarVeterinario(String idVeterinario);
+
   VeterinarioEntidad actualizarPassword(String idCliente, VeterinarioEntidad veterinario);
 }

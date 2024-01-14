@@ -4,10 +4,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.veterinaria.aplicacion.puertos.salida.Login.ILoginPeluqueroRepositorio;
 import org.veterinaria.aplicacion.puertos.salida.Peluquero.IPeluqueroRepositorio;
-import org.veterinaria.dominio.modelo.Cliente.ClienteEntidad;
 import org.veterinaria.dominio.modelo.Peluquero.*;
 import org.veterinaria.dominio.modelo.TipoDocumento.TipoDocumentoSalida;
-import org.veterinaria.dominio.servicio.Login.ILoginPeluqueroServicio;
 import org.veterinaria.dominio.servicio.Login.PasswordUtils;
 import org.veterinaria.dominio.servicio.TipoDocumento.ITipoDocumentoServicio;
 
@@ -21,6 +19,7 @@ public class PeluqueroServicio implements IPeluqueroServicio {
   ITipoDocumentoServicio tipoDocumentoServicio;
   @Inject
   ILoginPeluqueroRepositorio loginPeluqueroRepositorio;
+
   @Override
   public PeluqueroSalida actualizarPeluquero(String idPeluquero, PeluqueroActualizar peluquero) {
     PeluqueroEntidad peluqueroEntidad = new PeluqueroEntidad();
@@ -126,7 +125,8 @@ public class PeluqueroServicio implements IPeluqueroServicio {
     // Validar que la contraseña es correcta
     String email = this.obtenerPeluqueroPorId(idPeluquero).getEmail();
     PeluqueroEntidad peluqueroEntidad = loginPeluqueroRepositorio.findByEmailPeluquero(email);
-    if (peluquero == null || !PasswordUtils.checkPassword(peluquero.getPassword(), peluqueroEntidad.getPassword())) return null;
+    if (peluquero == null || !PasswordUtils.checkPassword(peluquero.getPassword(), peluqueroEntidad.getPassword()))
+      return null;
 
     // Validar que la nueva contraseña y la confirmación son iguales
     if (!peluquero.getNewPassword().equals(peluquero.getConfirmarPassword())) return null;

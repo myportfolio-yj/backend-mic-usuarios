@@ -11,7 +11,6 @@ import org.veterinaria.dominio.servicio.Login.PasswordUtils;
 import org.veterinaria.dominio.servicio.TipoDocumento.ITipoDocumentoServicio;
 
 import java.util.List;
-import java.util.Objects;
 
 @ApplicationScoped
 public class VeterinarioServicio implements IVeterinarioServicio {
@@ -133,7 +132,8 @@ public class VeterinarioServicio implements IVeterinarioServicio {
     // Validar que la contraseña es correcta
     String email = this.obtenerVeterinarioPorId(idVeterinario).getEmail();
     VeterinarioEntidad veterinarioEntidad = loginVeterinarioRepositorio.findByEmailVeterinario(email);
-    if (veterinario == null || !PasswordUtils.checkPassword(veterinario.getPassword(), veterinarioEntidad.getPassword())) return null;
+    if (veterinario == null || !PasswordUtils.checkPassword(veterinario.getPassword(), veterinarioEntidad.getPassword()))
+      return null;
 
     // Validar que la nueva contraseña y la confirmación son iguales
     if (!veterinario.getNewPassword().equals(veterinario.getConfirmarPassword())) return null;

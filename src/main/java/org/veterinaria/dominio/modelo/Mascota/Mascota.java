@@ -25,6 +25,7 @@ public class Mascota {
   private Boolean esterilizado;
   private List<Alergia> alergias;
   private List<Vacuna> vacunas;
+  private List<Recordatorio> recordatorios;
   private String foto;
   private String qr;
 }

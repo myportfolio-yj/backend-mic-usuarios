@@ -5,7 +5,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.core.Response;
 import org.veterinaria.aplicacion.puertos.entrada.Veterinario.IVeterinarioResource;
-import org.veterinaria.dominio.modelo.Cliente.ClienteSalida;
 import org.veterinaria.dominio.modelo.Veterinario.VeterinarioActualizar;
 import org.veterinaria.dominio.modelo.Veterinario.VeterinarioActualizarPassword;
 import org.veterinaria.dominio.modelo.Veterinario.VeterinarioCrear;

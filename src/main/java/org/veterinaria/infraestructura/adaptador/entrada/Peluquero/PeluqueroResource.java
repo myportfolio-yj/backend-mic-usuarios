@@ -9,7 +9,6 @@ import org.veterinaria.dominio.modelo.Peluquero.PeluqueroActualizar;
 import org.veterinaria.dominio.modelo.Peluquero.PeluqueroActualizarPassword;
 import org.veterinaria.dominio.modelo.Peluquero.PeluqueroCrear;
 import org.veterinaria.dominio.modelo.Peluquero.PeluqueroSalida;
-import org.veterinaria.dominio.modelo.Veterinario.VeterinarioSalida;
 import org.veterinaria.dominio.servicio.Peluquero.IPeluqueroServicio;
 
 public class PeluqueroResource implements IPeluqueroResource {

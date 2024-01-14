@@ -5,10 +5,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.veterinaria.dominio.modelo.Cliente.ClienteActualizarPassword;
 
-@Path("/cliente")
+@Path("/cliente-password")
 public interface IActualizarPasswordCliente {
   @PUT
-  @Path("/password/{idCliente}")
+  @Path("/{idCliente}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response putClientePassword(@PathParam("idCliente") String idCliente, ClienteActualizarPassword cliente);

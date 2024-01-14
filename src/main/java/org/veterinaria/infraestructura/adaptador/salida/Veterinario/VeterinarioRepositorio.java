@@ -4,7 +4,6 @@ import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.bson.types.ObjectId;
 import org.veterinaria.aplicacion.puertos.salida.Veterinario.IVeterinarioRepositorio;
-import org.veterinaria.dominio.modelo.Peluquero.PeluqueroEntidad;
 import org.veterinaria.dominio.modelo.Veterinario.VeterinarioEntidad;
 import org.veterinaria.infraestructura.adaptador.salida.Excepciones.ClienteNotFoundException;
 import org.veterinaria.infraestructura.adaptador.salida.Excepciones.VeterinarioNotFoundException;

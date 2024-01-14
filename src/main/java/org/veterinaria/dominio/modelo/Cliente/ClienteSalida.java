@@ -8,9 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.veterinaria.dominio.modelo.Citas.Cita;
-import org.veterinaria.dominio.modelo.Mascota.Mascota;
 import org.veterinaria.dominio.modelo.Mascota.MascotaSalida;
-import org.veterinaria.dominio.modelo.Recordatorio.Recordatorio;
 import org.veterinaria.dominio.modelo.TipoDocumento.TipoDocumentoSalida;
 
 import java.util.List;

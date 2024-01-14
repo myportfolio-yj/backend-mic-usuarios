@@ -6,33 +6,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.core.Response;
 import org.veterinaria.aplicacion.puertos.entrada.Cliente.IClienteResource;
 import org.veterinaria.dominio.modelo.Cliente.ClienteActualizar;
-import org.veterinaria.dominio.modelo.Cliente.ClienteActualizarPassword;
 import org.veterinaria.dominio.modelo.Cliente.ClienteCrear;
 import org.veterinaria.dominio.modelo.Cliente.ClienteSalida;
 import org.veterinaria.dominio.servicio.Cliente.IClienteServicio;
-
-import java.util.List;
+import org.veterinaria.infraestructura.adaptador.salida.Excepciones.ClienteNotFoundException;
 
 public class ClienteResource implements IClienteResource {
+  public static final String CLIENTE_INVALIDO = "ID de cliente inválido";
   @Inject
   IClienteServicio servicio;
-  @Override
-  public Response putCliente(@NotNull String idCliente, @Valid ClienteActualizar cliente) {
-    ClienteSalida clienteActualizado = servicio.actualizarCliente(idCliente, cliente);
-    return Response.ok(clienteActualizado).build();
-  }
-
-  @Override
-  public Response postCliente(@Valid ClienteCrear cliente) {
-    ClienteSalida clienteCreado = servicio.crearCliente(cliente);
-    return Response.status(Response.Status.CREATED).entity(clienteCreado).build();
-  }
-
-  @Override
-  public Response deleteCliente(@NotNull String idCliente) {
-    ClienteSalida clienteEliminado = servicio.eliminarCliente(idCliente);
-    return Response.status(Response.Status.CREATED).entity(clienteEliminado).build();
-  }
 
   @Override
   public Response getCliente() {
@@ -41,18 +23,50 @@ public class ClienteResource implements IClienteResource {
 
   @Override
   public Response getClientePorId(@NotNull String idCliente) {
-    return Response.ok(servicio.obtenerClientePorId(idCliente)).build();
+    Response errorResponse = validarYObtenerRespuesta(idCliente);
+    if (errorResponse != null) return errorResponse;
+    ClienteSalida cliente;
+    try {
+      cliente = servicio.obtenerClientePorId(idCliente);
+    } catch (ClienteNotFoundException e) {
+      return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+    }
+    return Response.ok(cliente).build();
   }
 
   @Override
-  public Response postMascotaCliente(@NotNull String idCliente, List<String> idMascota) {
-    ClienteSalida cliete = servicio.agregarMascota(idCliente, idMascota);
-    return Response.status(Response.Status.CREATED).entity(cliete).build();
+  public Response postCliente(@Valid ClienteCrear cliente) {
+    return Response.status(Response.Status.CREATED).entity(servicio.crearCliente(cliente)).build();
   }
 
   @Override
-  public Response putClientePassword(String idCliente, ClienteActualizarPassword cliente) {
-    ClienteSalida clienteActualizado = servicio.actualizarPasswordCliente(idCliente, cliente);
-    return Response.ok(clienteActualizado).build();
+  public Response putCliente(@NotNull String idCliente, @Valid ClienteActualizar cliente) {
+    Response errorResponse = validarYObtenerRespuesta(idCliente);
+    if (errorResponse != null) return errorResponse;
+    ClienteSalida clienteSalida;
+    try {
+      clienteSalida = servicio.actualizarCliente(idCliente, cliente);
+    } catch (ClienteNotFoundException e) {
+      return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+    }
+    return Response.ok(clienteSalida).build();
+  }
+
+  @Override
+  public Response deleteCliente(@NotNull String idCliente) {
+    Response errorResponse = validarYObtenerRespuesta(idCliente);
+    if (errorResponse != null) return errorResponse;
+    return Response.status(Response.Status.CREATED).entity(servicio.eliminarCliente(idCliente)).build();
+  }
+
+  private Boolean validarIdCliente(String idCliente) {
+    return idCliente.length() != 24;
+  }
+
+  private Response validarYObtenerRespuesta(String idCliente) {
+    if (validarIdCliente(idCliente)) {
+      return Response.status(Response.Status.BAD_REQUEST).entity(CLIENTE_INVALIDO).build();
+    }
+    return null;
   }
 }

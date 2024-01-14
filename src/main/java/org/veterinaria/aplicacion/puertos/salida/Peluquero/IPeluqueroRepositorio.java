@@ -14,5 +14,6 @@ public interface IPeluqueroRepositorio {
   PeluqueroEntidad actualizarPeluquero(String idPeluquero, PeluqueroEntidad peluquero);
 
   PeluqueroEntidad eliminarPeluquero(String idPeluquero);
+
   PeluqueroEntidad actualizarPassword(String idCliente, PeluqueroEntidad peluquero);
 }

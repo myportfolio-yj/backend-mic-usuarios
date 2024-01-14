@@ -4,6 +4,7 @@ import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.veterinaria.aplicacion.puertos.salida.Login.ILoginVeterinarioRepositorio;
 import org.veterinaria.dominio.modelo.Veterinario.VeterinarioEntidad;
+
 @ApplicationScoped
 public class LoginVeterinarioRepositorio implements PanacheMongoRepository<VeterinarioEntidad>, ILoginVeterinarioRepositorio {
   @Override

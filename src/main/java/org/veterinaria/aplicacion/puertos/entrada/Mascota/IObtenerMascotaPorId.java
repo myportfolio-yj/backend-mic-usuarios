@@ -1,6 +1,5 @@
 package org.veterinaria.aplicacion.puertos.entrada.Mascota;
 
-import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;

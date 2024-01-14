@@ -3,11 +3,9 @@ package org.veterinaria.dominio.servicio.Login;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.veterinaria.aplicacion.puertos.salida.Login.ILoginPeluqueroRepositorio;
-import org.veterinaria.dominio.modelo.Cliente.ClienteEntidad;
 import org.veterinaria.dominio.modelo.Login.Login;
 import org.veterinaria.dominio.modelo.Peluquero.PeluqueroEntidad;
 import org.veterinaria.dominio.modelo.Peluquero.PeluqueroSalida;
-import org.veterinaria.dominio.modelo.TipoDocumento.TipoDocumentoSalida;
 import org.veterinaria.dominio.servicio.Peluquero.IPeluqueroServicio;
 import org.veterinaria.dominio.servicio.TipoDocumento.ITipoDocumentoServicio;
 

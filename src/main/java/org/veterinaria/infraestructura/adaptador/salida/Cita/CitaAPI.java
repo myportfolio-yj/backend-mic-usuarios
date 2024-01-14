@@ -1,4 +1,4 @@
-package org.veterinaria.infraestructura.adaptador.salida.Mascota;
+package org.veterinaria.infraestructura.adaptador.salida.Cita;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -6,13 +6,15 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import org.veterinaria.dominio.modelo.Mascota.Mascota;
+import org.veterinaria.dominio.modelo.Citas.Cita;
+
+import java.util.List;
 
 @Path("/")
 @RegisterRestClient
-public interface MascotaAPI {
+public interface CitaAPI {
   @GET
-  @Path("/mascota/{idMascota}")
+  @Path("/cita-vigentes/{idCliente}")
   @Produces(MediaType.APPLICATION_JSON)
-  Mascota getMascotaPorId(@PathParam("idMascota") String idMascota);
+  List<Cita> getCitasPorIdCliente(@PathParam("idCliente") String idCliente);
 }
