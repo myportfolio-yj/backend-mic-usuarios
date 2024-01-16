@@ -3,7 +3,6 @@ package org.veterinaria.dominio.servicio.veterinario;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.veterinaria.aplicacion.puertos.salida.login.ILoginVeterinarioRepositorio;
-import org.veterinaria.aplicacion.puertos.salida.tipodocumento.ITipoDocumentoRepositorio;
 import org.veterinaria.aplicacion.puertos.salida.veterinario.IVeterinarioRepositorio;
 import org.veterinaria.dominio.modelo.tipodocumento.TipoDocumentoSalida;
 import org.veterinaria.dominio.modelo.veterinario.*;
@@ -16,8 +15,6 @@ import java.util.List;
 public class VeterinarioServicio implements IVeterinarioServicio {
   @Inject
   IVeterinarioRepositorio repositorio;
-  @Inject
-  ITipoDocumentoRepositorio tipoDocumentoRepositorio;
   @Inject
   ITipoDocumentoServicio tipoDocumentoServicio;
   @Inject

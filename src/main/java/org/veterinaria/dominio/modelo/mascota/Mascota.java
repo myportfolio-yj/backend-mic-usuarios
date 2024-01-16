@@ -19,13 +19,13 @@ public class Mascota {
   private String nombre;
   private String apellido;
   private String fechaNacimiento;
-  private Sexo sexo;
-  private Especie especie;
-  private Raza raza;
+  private SexoSalida sexo;
+  private EspecieSalida especie;
+  private RazaSalida raza;
   private Boolean esterilizado;
-  private List<Alergia> alergias;
-  private List<Vacuna> vacunas;
-  private List<Recordatorio> recordatorios;
+  private List<AlergiaSalida> alergias;
+  private List<VacunaSalida> vacunas;
+  private List<RecordatorioSalida> recordatorios;
   private String foto;
   private String qr;
 }

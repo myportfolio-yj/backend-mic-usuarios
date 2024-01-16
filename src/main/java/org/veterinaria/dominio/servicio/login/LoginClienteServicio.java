@@ -14,8 +14,6 @@ public class LoginClienteServicio implements ILoginClienteServicio {
   @Inject
   ILoginClienteRepositorio repositorio;
   @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
   IClienteServicio clienteServicio;
 
   @Override

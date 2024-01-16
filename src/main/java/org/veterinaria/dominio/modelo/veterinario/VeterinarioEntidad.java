@@ -10,14 +10,14 @@ import org.bson.types.ObjectId;
 @Setter
 @MongoEntity(collection = "collect-Veterinario")
 public class VeterinarioEntidad extends PanacheMongoEntity {
-  public String codVeterinario;
-  public String nombres;
-  public String apellidos;
-  public String celular;
-  public String fijo;
-  public String email;
-  public String idTipoDocumento;
-  public String documento;
-  public String password;
-  public Boolean delete;
+  private String codVeterinario;
+  private String nombres;
+  private String apellidos;
+  private String celular;
+  private String fijo;
+  private String email;
+  private String idTipoDocumento;
+  private String documento;
+  private String password;
+  private Boolean delete;
 }

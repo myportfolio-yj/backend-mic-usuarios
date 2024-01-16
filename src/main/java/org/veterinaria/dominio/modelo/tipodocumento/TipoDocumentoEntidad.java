@@ -10,6 +10,6 @@ import org.bson.types.ObjectId;
 @Setter
 @MongoEntity(collection = "collect-TipoDocumento")
 public class TipoDocumentoEntidad extends PanacheMongoEntity {
-  public String tipoDocumento;
-  public Boolean delete;
+  private String tipoDocumento;
+  private Boolean delete;
 }

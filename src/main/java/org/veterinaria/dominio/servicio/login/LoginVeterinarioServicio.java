@@ -14,8 +14,6 @@ public class LoginVeterinarioServicio implements ILoginVeterinarioServicio {
   @Inject
   ILoginVeterinarioRepositorio repositorio;
   @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
   IVeterinarioServicio veterinarioServicio;
 
   @Override

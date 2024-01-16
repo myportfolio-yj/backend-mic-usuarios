@@ -11,7 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VeterinarioCrear {
-  public String codVeterinario;
+  private String codVeterinario;
   private String nombres;
   private String apellidos;
   private String celular;

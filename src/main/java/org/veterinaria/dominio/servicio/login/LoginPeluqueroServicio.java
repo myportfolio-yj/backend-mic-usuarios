@@ -15,8 +15,6 @@ public class LoginPeluqueroServicio implements ILoginPeluqueroServicio {
   @Inject
   ILoginPeluqueroRepositorio repositorio;
   @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
   IPeluqueroServicio peluqueroServicio;
 
   @Override
