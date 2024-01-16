@@ -65,7 +65,8 @@ public class ClienteServicio implements IClienteServicio {
 
   @Override
   public ClienteSalida actualizarCliente(String idCliente, ClienteActualizar cliente) {
-    ClienteEntidad clienteEntidad = crearClienteEntidad(cliente.getNombres(), cliente.getApellidos(), cliente.getCelular(), cliente.getFijo(), cliente.getEmail(), cliente.getIdTipoDocumento(), cliente.getDocumento());
+    ClienteEntidad clienteEntidad = crearClienteEntidad(cliente.getNombres(), cliente.getApellidos(),
+          cliente.getCelular(), cliente.getFijo(), null, cliente.getIdTipoDocumento(), cliente.getDocumento());
     try {
       repositorio.actualizarCliente(idCliente, clienteEntidad);
     } catch (ClienteNotFoundException e) {
@@ -183,7 +184,7 @@ public class ClienteServicio implements IClienteServicio {
                       })
                       .toList()
                 :
-                null
+                new ArrayList<>()
           )
           .recordatorio(recordatorios)
           .citas(
