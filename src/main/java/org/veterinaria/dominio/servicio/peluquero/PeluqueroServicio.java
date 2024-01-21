@@ -105,7 +105,7 @@ public class PeluqueroServicio implements IPeluqueroServicio {
     List<PeluqueroEntidad> peluqueros = repositorio.obtenerTodosPeluquero();
     return peluqueros.stream().map(p -> {
       TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(p.getIdTipoDocumento());
-      PeluqueroSalida peluquero = PeluqueroSalida.builder()
+      return PeluqueroSalida.builder()
             .id(p.id.toString())
             .nombres(p.getNombres())
             .apellidos(p.getApellidos())
@@ -120,7 +120,6 @@ public class PeluqueroServicio implements IPeluqueroServicio {
             )
             .documento(p.getDocumento())
             .build();
-      return peluquero;
     }).toList();
   }
 
