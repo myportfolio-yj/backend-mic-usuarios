@@ -15,12 +15,18 @@ import org.veterinaria.dominio.servicio.login.ILoginPeluqueroServicio;
 import org.veterinaria.dominio.servicio.login.ILoginVeterinarioServicio;
 
 public class LoginResource implements ILoginCliente, ILoginVeterinario, ILoginPeluquero {
+  private final ILoginClienteServicio loginClienteServicio;
+  private final ILoginPeluqueroServicio loginPeluqueroServicio;
+  private final ILoginVeterinarioServicio loginVeterinarioServicio;
+
   @Inject
-  ILoginClienteServicio loginClienteServicio;
-  @Inject
-  ILoginPeluqueroServicio loginPeluqueroServicio;
-  @Inject
-  ILoginVeterinarioServicio loginVeterinarioServicio;
+  public LoginResource(ILoginClienteServicio loginClienteServicio,
+                       ILoginPeluqueroServicio loginPeluqueroServicio,
+                       ILoginVeterinarioServicio loginVeterinarioServicio) {
+    this.loginClienteServicio = loginClienteServicio;
+    this.loginPeluqueroServicio = loginPeluqueroServicio;
+    this.loginVeterinarioServicio = loginVeterinarioServicio;
+  }
 
   @Override
   public Response loginCliente(@Valid Login login) {

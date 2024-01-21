@@ -10,10 +10,14 @@ import org.veterinaria.dominio.servicio.cliente.IClienteServicio;
 
 @ApplicationScoped
 public class LoginClienteServicio implements ILoginClienteServicio {
+  private final ILoginClienteRepositorio repositorio;
+  private final IClienteServicio clienteServicio;
+
   @Inject
-  ILoginClienteRepositorio repositorio;
-  @Inject
-  IClienteServicio clienteServicio;
+  public LoginClienteServicio(ILoginClienteRepositorio repositorio, IClienteServicio clienteServicio) {
+    this.repositorio = repositorio;
+    this.clienteServicio = clienteServicio;
+  }
 
   @Override
   public ClienteSalida login(Login login) {

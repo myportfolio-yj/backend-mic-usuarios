@@ -12,8 +12,12 @@ import org.veterinaria.dominio.modelo.veterinario.VeterinarioSalida;
 import org.veterinaria.dominio.servicio.veterinario.IVeterinarioServicio;
 
 public class VeterinarioResource implements IVeterinarioResource {
+  private final IVeterinarioServicio servicio;
+
   @Inject
-  IVeterinarioServicio servicio;
+  public VeterinarioResource(IVeterinarioServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response putVeterinario(@NotNull String idVeterinario, @Valid VeterinarioActualizar veterinario) {

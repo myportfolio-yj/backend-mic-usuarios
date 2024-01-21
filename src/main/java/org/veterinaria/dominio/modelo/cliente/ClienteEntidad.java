@@ -18,7 +18,7 @@ public class ClienteEntidad extends PanacheMongoEntity {
   private String email;
   private String idTipoDocumento;
   private String documento;
-  private List<String> IdMascotas;
+  private List<String> idMascotas;
   private String password;
   private Boolean delete;
 }

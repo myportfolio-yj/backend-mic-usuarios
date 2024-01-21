@@ -9,8 +9,12 @@ import org.veterinaria.infraestructura.adaptador.salida.excepciones.ClienteNotFo
 
 public class SoloClienteResource implements ISoloClienteResource {
   public static final String CLIENTE_INVALIDO = "ID de cliente inválido";
+  private final IClienteServicio servicio;
+
   @Inject
-  IClienteServicio servicio;
+  public SoloClienteResource(IClienteServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response getClientePorId(String idCliente) {

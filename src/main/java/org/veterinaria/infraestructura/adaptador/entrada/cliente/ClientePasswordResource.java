@@ -9,8 +9,12 @@ import org.veterinaria.dominio.servicio.cliente.IClienteServicio;
 
 public class ClientePasswordResource implements IActualizarPasswordCliente {
   public static final String CLIENTE_INVALIDO = "ID de cliente inválido";
+  private final IClienteServicio servicio;
+
   @Inject
-  IClienteServicio servicio;
+  public ClientePasswordResource(IClienteServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response putClientePassword(String idCliente, ClienteActualizarPassword cliente) {

@@ -10,10 +10,14 @@ import org.veterinaria.dominio.servicio.veterinario.IVeterinarioServicio;
 
 @ApplicationScoped
 public class LoginVeterinarioServicio implements ILoginVeterinarioServicio {
+  private final ILoginVeterinarioRepositorio repositorio;
+  private final IVeterinarioServicio veterinarioServicio;
+
   @Inject
-  ILoginVeterinarioRepositorio repositorio;
-  @Inject
-  IVeterinarioServicio veterinarioServicio;
+  public LoginVeterinarioServicio(ILoginVeterinarioRepositorio repositorio, IVeterinarioServicio veterinarioServicio) {
+    this.repositorio = repositorio;
+    this.veterinarioServicio = veterinarioServicio;
+  }
 
   @Override
   public VeterinarioSalida login(Login login) {

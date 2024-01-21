@@ -27,5 +27,5 @@ public class Cita {
   @Builder.Default
   private String image = "https://res.cloudinary.com/dmaoa8dcd/image/upload/v1705193414/Appomsv/clock1_tqr8ky.png";
   @Builder.Default
-  private String image_label = "Clock";
+  private String imageLabel = "Clock";
 }

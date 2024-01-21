@@ -13,12 +13,18 @@ import java.util.List;
 
 @ApplicationScoped
 public class PeluqueroServicio implements IPeluqueroServicio {
+  private final IPeluqueroRepositorio repositorio;
+  private final ITipoDocumentoServicio tipoDocumentoServicio;
+  private final ILoginPeluqueroRepositorio loginPeluqueroRepositorio;
+
   @Inject
-  IPeluqueroRepositorio repositorio;
-  @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
-  ILoginPeluqueroRepositorio loginPeluqueroRepositorio;
+  public PeluqueroServicio(IPeluqueroRepositorio repositorio,
+                           ITipoDocumentoServicio tipoDocumentoServicio,
+                           ILoginPeluqueroRepositorio loginPeluqueroRepositorio) {
+    this.repositorio = repositorio;
+    this.tipoDocumentoServicio = tipoDocumentoServicio;
+    this.loginPeluqueroRepositorio = loginPeluqueroRepositorio;
+  }
 
   @Override
   public PeluqueroSalida actualizarPeluquero(String idPeluquero, PeluqueroActualizar peluquero) {
@@ -56,7 +62,7 @@ public class PeluqueroServicio implements IPeluqueroServicio {
   public PeluqueroSalida eliminarPeluquero(String idPeluquero) {
     PeluqueroEntidad peluqueroEntidad = repositorio.eliminarPeluquero(idPeluquero);
     TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(peluqueroEntidad.getIdTipoDocumento());
-    PeluqueroSalida cliente = PeluqueroSalida.builder()
+    return PeluqueroSalida.builder()
           .id(peluqueroEntidad.id.toString())
           .nombres(peluqueroEntidad.getNombres())
           .apellidos(peluqueroEntidad.getApellidos())
@@ -71,14 +77,13 @@ public class PeluqueroServicio implements IPeluqueroServicio {
           )
           .documento(peluqueroEntidad.getDocumento())
           .build();
-    return cliente;
   }
 
   @Override
   public PeluqueroSalida obtenerPeluqueroPorId(String idPeluquero) {
     PeluqueroEntidad peluqueroEntidad = repositorio.obtenerPeluqueroPorId(idPeluquero);
     TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(peluqueroEntidad.getIdTipoDocumento());
-    PeluqueroSalida peluquero = PeluqueroSalida.builder()
+    return PeluqueroSalida.builder()
           .id(peluqueroEntidad.id.toString())
           .nombres(peluqueroEntidad.getNombres())
           .apellidos(peluqueroEntidad.getApellidos())
@@ -93,7 +98,6 @@ public class PeluqueroServicio implements IPeluqueroServicio {
           )
           .documento(peluqueroEntidad.getDocumento())
           .build();
-    return peluquero;
   }
 
   @Override

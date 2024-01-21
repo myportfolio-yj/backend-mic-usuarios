@@ -13,12 +13,18 @@ import java.util.List;
 
 @ApplicationScoped
 public class VeterinarioServicio implements IVeterinarioServicio {
+  private final IVeterinarioRepositorio repositorio;
+  private final ITipoDocumentoServicio tipoDocumentoServicio;
+  private final ILoginVeterinarioRepositorio loginVeterinarioRepositorio;
+
   @Inject
-  IVeterinarioRepositorio repositorio;
-  @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
-  ILoginVeterinarioRepositorio loginVeterinarioRepositorio;
+  public VeterinarioServicio(IVeterinarioRepositorio repositorio,
+                             ITipoDocumentoServicio tipoDocumentoServicio,
+                             ILoginVeterinarioRepositorio loginVeterinarioRepositorio) {
+    this.repositorio = repositorio;
+    this.tipoDocumentoServicio = tipoDocumentoServicio;
+    this.loginVeterinarioRepositorio = loginVeterinarioRepositorio;
+  }
 
   @Override
   public VeterinarioSalida actualizarVeterinario(String idVeterinario, VeterinarioActualizar veterinario) {
@@ -58,7 +64,7 @@ public class VeterinarioServicio implements IVeterinarioServicio {
   public VeterinarioSalida eliminarVeterinario(String idVeterinario) {
     VeterinarioEntidad veterinarioEntidad = repositorio.eliminarVeterinario(idVeterinario);
     TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(veterinarioEntidad.getIdTipoDocumento());
-    VeterinarioSalida veterinario = VeterinarioSalida.builder()
+    return VeterinarioSalida.builder()
           .id(veterinarioEntidad.id.toString())
           .codVeterinario(veterinarioEntidad.getCodVeterinario())
           .nombres(veterinarioEntidad.getNombres())
@@ -74,14 +80,13 @@ public class VeterinarioServicio implements IVeterinarioServicio {
           )
           .documento(veterinarioEntidad.getDocumento())
           .build();
-    return veterinario;
   }
 
   @Override
   public VeterinarioSalida obtenerVeterinarioPorId(String idVeterinario) {
     VeterinarioEntidad veterinarioEntidad = repositorio.obtenerVeterinarioPorId(idVeterinario);
     TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(veterinarioEntidad.getIdTipoDocumento());
-    VeterinarioSalida veterinario = VeterinarioSalida.builder()
+    return VeterinarioSalida.builder()
           .id(veterinarioEntidad.id.toString())
           .codVeterinario(veterinarioEntidad.getCodVeterinario())
           .nombres(veterinarioEntidad.getNombres())
@@ -97,7 +102,6 @@ public class VeterinarioServicio implements IVeterinarioServicio {
           )
           .documento(veterinarioEntidad.getDocumento())
           .build();
-    return veterinario;
   }
 
   @Override

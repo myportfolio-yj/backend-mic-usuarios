@@ -12,8 +12,12 @@ import org.veterinaria.dominio.modelo.peluquero.PeluqueroSalida;
 import org.veterinaria.dominio.servicio.peluquero.IPeluqueroServicio;
 
 public class PeluqueroResource implements IPeluqueroResource {
+  private final IPeluqueroServicio servicio;
+
   @Inject
-  IPeluqueroServicio servicio;
+  public PeluqueroResource(IPeluqueroServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response putPeluquero(@NotNull String idPeluquero, @Valid PeluqueroActualizar peluquero) {

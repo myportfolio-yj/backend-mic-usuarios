@@ -11,8 +11,12 @@ import java.util.List;
 
 @ApplicationScoped
 public class TipoDocumentoServicio implements ITipoDocumentoServicio {
+  private final ITipoDocumentoRepositorio repositorio;
+
   @Inject
-  ITipoDocumentoRepositorio repositorio;
+  public TipoDocumentoServicio(ITipoDocumentoRepositorio repositorio) {
+    this.repositorio = repositorio;
+  }
 
   @Override
   public TipoDocumentoSalida actualizarTipoDocumento(String idTipoDocumento, TipoDocumentoEntrada tipoDocumento) {

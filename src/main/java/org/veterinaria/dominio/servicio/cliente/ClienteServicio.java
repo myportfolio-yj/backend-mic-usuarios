@@ -23,21 +23,26 @@ import java.util.Set;
 
 @ApplicationScoped
 public class ClienteServicio implements IClienteServicio {
+  public static final String DOG = "canino";
+  public static final String LABEL_CAT = "https://res.cloudinary.com/dmaoa8dcd/image/upload/v1703366448/Appomsv/gato_yp3qhq.png";
+  public static final String LABEL_DOG = "https://res.cloudinary.com/dmaoa8dcd/image/upload/v1703366514/Appomsv/perro_dpuugt.png";
+  private final IClienteRepositorio repositorio;
+  private final ITipoDocumentoServicio tipoDocumentoServicio;
+  private final ILoginClienteRepositorio loginClienteRepositorio;
+  private final MascotaAPI userService;
+  private final CitaAPI clienteService;
+  private final GeolocalizacionAPI geolocalizacionAPI;
+
   @Inject
-  IClienteRepositorio repositorio;
-  @Inject
-  ITipoDocumentoServicio tipoDocumentoServicio;
-  @Inject
-  ILoginClienteRepositorio loginClienteRepositorio;
-  @Inject
-  @RestClient
-  MascotaAPI userService;
-  @Inject
-  @RestClient
-  CitaAPI clienteService;
-  @Inject
-  @RestClient
-  GeolocalizacionAPI geolocalizacionAPI;
+  public ClienteServicio(IClienteRepositorio repositorio, ITipoDocumentoServicio tipoDocumentoServicio,
+                         ILoginClienteRepositorio loginClienteRepositorio, @RestClient MascotaAPI userService, @RestClient CitaAPI clienteService, @RestClient GeolocalizacionAPI geolocalizacionAPI) {
+    this.repositorio = repositorio;
+    this.tipoDocumentoServicio = tipoDocumentoServicio;
+    this.loginClienteRepositorio = loginClienteRepositorio;
+    this.userService = userService;
+    this.clienteService = clienteService;
+    this.geolocalizacionAPI = geolocalizacionAPI;
+  }
 
   @Override
   public List<ClienteSalida> obtenerCliente() {
@@ -201,9 +206,7 @@ public class ClienteServicio implements IClienteServicio {
                         return MascotaSalida.builder()
                               .id(mascota.getId())
                               .codIdentificacion(mascota.getCodIdentificacion())
-                              .lable((mascota.getEspecie().getEspecie().equals("canino")) ?
-                                    "https://res.cloudinary.com/dmaoa8dcd/image/upload/v1703366514/Appomsv/perro_dpuugt.png" :
-                                    "https://res.cloudinary.com/dmaoa8dcd/image/upload/v1703366448/Appomsv/gato_yp3qhq.png")
+                              .lable((mascota.getEspecie().getEspecie().equals(DOG)) ? LABEL_DOG : LABEL_CAT)
                               .nombre(mascota.getNombre())
                               .apellido(mascota.getApellido())
                               .fechaNacimiento(mascota.getFechaNacimiento())

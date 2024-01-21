@@ -10,11 +10,14 @@ import org.veterinaria.dominio.servicio.peluquero.IPeluqueroServicio;
 
 @ApplicationScoped
 public class LoginPeluqueroServicio implements ILoginPeluqueroServicio {
+  private final ILoginPeluqueroRepositorio repositorio;
+  private final IPeluqueroServicio peluqueroServicio;
 
   @Inject
-  ILoginPeluqueroRepositorio repositorio;
-  @Inject
-  IPeluqueroServicio peluqueroServicio;
+  public LoginPeluqueroServicio(ILoginPeluqueroRepositorio repositorio, IPeluqueroServicio clienteServicio) {
+    this.repositorio = repositorio;
+    this.peluqueroServicio = clienteServicio;
+  }
 
   @Override
   public PeluqueroSalida login(Login login) {

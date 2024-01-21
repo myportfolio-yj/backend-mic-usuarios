@@ -10,8 +10,12 @@ import org.veterinaria.dominio.modelo.tipodocumento.TipoDocumentoSalida;
 import org.veterinaria.dominio.servicio.tipodocumento.ITipoDocumentoServicio;
 
 public class TipoDocumentoResource implements ITipoDocumentoResource {
+  private final ITipoDocumentoServicio servicio;
+
   @Inject
-  ITipoDocumentoServicio servicio;
+  public TipoDocumentoResource(ITipoDocumentoServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response putTipoDocumento(@NotNull String idTipoDocumento, @Valid TipoDocumentoEntrada tipoDocumento) {

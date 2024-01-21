@@ -10,8 +10,12 @@ import java.util.List;
 
 public class ClienteMascotaResource implements IClienteMascotaResource {
   public static final String CLIENTE_INVALIDO = "ID de cliente inválido";
+  private final IClienteServicio servicio;
+
   @Inject
-  IClienteServicio servicio;
+  public ClienteMascotaResource(IClienteServicio servicio) {
+    this.servicio = servicio;
+  }
 
   @Override
   public Response postMascotaCliente(@NotNull String idCliente, List<String> idMascota) {
