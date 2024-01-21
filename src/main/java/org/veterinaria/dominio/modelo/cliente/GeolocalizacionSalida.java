@@ -13,9 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @RegisterForReflection
-public class Recordatorio {
-  private String nombre;
+public class GeolocalizacionSalida {
+  private String id;
+  private String url;
+  private String telefono;
   private String fecha;
-  private String tipo;
-  private String detalle;
+  private String hora;
 }

@@ -31,4 +31,5 @@ public class ClienteSalida {
   private List<MascotaSalida> mascotas;
   private List<Cita> citas;
   private List<Recordatorio> recordatorio;
+  private List<GeolocalizacionArraySalida> geolocalizaciones;
 }

@@ -6,7 +6,6 @@ import org.veterinaria.aplicacion.puertos.salida.login.ILoginVeterinarioReposito
 import org.veterinaria.dominio.modelo.login.Login;
 import org.veterinaria.dominio.modelo.veterinario.VeterinarioEntidad;
 import org.veterinaria.dominio.modelo.veterinario.VeterinarioSalida;
-import org.veterinaria.dominio.servicio.tipodocumento.ITipoDocumentoServicio;
 import org.veterinaria.dominio.servicio.veterinario.IVeterinarioServicio;
 
 @ApplicationScoped

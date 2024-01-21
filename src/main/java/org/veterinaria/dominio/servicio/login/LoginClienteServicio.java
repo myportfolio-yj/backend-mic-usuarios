@@ -7,7 +7,6 @@ import org.veterinaria.dominio.modelo.cliente.ClienteEntidad;
 import org.veterinaria.dominio.modelo.cliente.ClienteSalida;
 import org.veterinaria.dominio.modelo.login.Login;
 import org.veterinaria.dominio.servicio.cliente.IClienteServicio;
-import org.veterinaria.dominio.servicio.tipodocumento.ITipoDocumentoServicio;
 
 @ApplicationScoped
 public class LoginClienteServicio implements ILoginClienteServicio {

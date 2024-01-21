@@ -7,5 +7,6 @@ public interface IClienteServicio extends
       IEliminarClienteServicio,
       IObtenerClienteServicio,
       IObtenerClientePorIdServicio,
-      IAgregarMascotaClienteServicio {
+      IAgregarMascotaClienteServicio,
+      IObtenerSoloClientePorIdServicio {
 }

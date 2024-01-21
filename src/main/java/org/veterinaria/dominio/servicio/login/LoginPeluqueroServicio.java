@@ -7,7 +7,6 @@ import org.veterinaria.dominio.modelo.login.Login;
 import org.veterinaria.dominio.modelo.peluquero.PeluqueroEntidad;
 import org.veterinaria.dominio.modelo.peluquero.PeluqueroSalida;
 import org.veterinaria.dominio.servicio.peluquero.IPeluqueroServicio;
-import org.veterinaria.dominio.servicio.tipodocumento.ITipoDocumentoServicio;
 
 @ApplicationScoped
 public class LoginPeluqueroServicio implements ILoginPeluqueroServicio {

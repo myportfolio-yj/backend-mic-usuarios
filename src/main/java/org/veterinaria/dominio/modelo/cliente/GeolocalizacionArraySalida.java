@@ -7,15 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @RegisterForReflection
-public class Recordatorio {
-  private String nombre;
-  private String fecha;
-  private String tipo;
-  private String detalle;
+public class GeolocalizacionArraySalida {
+  private String mascotaId;
+  private String mascotaNombre;
+  private List<GeolocalizacionSalida> geolocalizaciones;
 }

@@ -13,6 +13,7 @@ import org.veterinaria.dominio.servicio.login.PasswordUtils;
 import org.veterinaria.dominio.servicio.tipodocumento.ITipoDocumentoServicio;
 import org.veterinaria.infraestructura.adaptador.salida.cita.CitaAPI;
 import org.veterinaria.infraestructura.adaptador.salida.excepciones.ClienteNotFoundException;
+import org.veterinaria.infraestructura.adaptador.salida.geolocalizacion.GeolocalizacionAPI;
 import org.veterinaria.infraestructura.adaptador.salida.mascota.MascotaAPI;
 
 import java.util.ArrayList;
@@ -34,11 +35,25 @@ public class ClienteServicio implements IClienteServicio {
   @Inject
   @RestClient
   CitaAPI clienteService;
+  @Inject
+  @RestClient
+  GeolocalizacionAPI geolocalizacionAPI;
 
   @Override
   public List<ClienteSalida> obtenerCliente() {
     List<ClienteEntidad> clientes = repositorio.obtenerTodosCliente();
     return clientes.stream().map(this::getClienteSalida).toList();
+  }
+
+  @Override
+  public ClienteSalida obtenerSoloClientePorId(String idCliente) {
+    ClienteEntidad clienteEntidad;
+    try {
+      clienteEntidad = repositorio.obtenerClientePorId(idCliente);
+    } catch (ClienteNotFoundException e) {
+      throw new ClienteNotFoundException(idCliente);
+    }
+    return getSoloClienteSalida(clienteEntidad);
   }
 
   @Override
@@ -134,6 +149,26 @@ public class ClienteServicio implements IClienteServicio {
     return clienteEntidad;
   }
 
+  private ClienteSalida getSoloClienteSalida(ClienteEntidad clienteEntidad) {
+    TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(clienteEntidad.getIdTipoDocumento());
+    List<Recordatorio> recordatorios = new ArrayList<Recordatorio>();
+    return ClienteSalida.builder()
+          .id(clienteEntidad.id.toString())
+          .nombres(clienteEntidad.getNombres())
+          .apellidos(clienteEntidad.getApellidos())
+          .celular(clienteEntidad.getCelular())
+          .fijo(clienteEntidad.getFijo())
+          .email(clienteEntidad.getEmail())
+          .tipoDocumento(
+                TipoDocumentoSalida.builder()
+                      .id(tipoDocumento.getId())
+                      .tipoDocumento(tipoDocumento.getTipoDocumento())
+                      .build()
+          )
+          .documento(clienteEntidad.getDocumento())
+          .build();
+  }
+
   private ClienteSalida getClienteSalida(ClienteEntidad clienteEntidad) {
     TipoDocumentoSalida tipoDocumento = tipoDocumentoServicio.obtenerTipoDocumentoPorId(clienteEntidad.getIdTipoDocumento());
     List<Recordatorio> recordatorios = new ArrayList<Recordatorio>();
@@ -155,7 +190,7 @@ public class ClienteServicio implements IClienteServicio {
                 clienteEntidad.getIdMascotas().stream()
                       .map(q -> {
                         Mascota mascota = userService.getMascotaPorId(q);
-                        if(mascota.getVacunas() != null && !mascota.getVacunas().isEmpty()){
+                        if (mascota.getVacunas() != null && !mascota.getVacunas().isEmpty()) {
                           recordatorios.addAll(mascota.getRecordatorios().parallelStream().map(p -> Recordatorio.builder()
                                 .fecha(p.getFecha())
                                 .tipo(p.getTipo())
@@ -190,6 +225,18 @@ public class ClienteServicio implements IClienteServicio {
           .citas(
                 clienteService.getCitasPorIdCliente(clienteEntidad.id.toString())
           )
+          .geolocalizaciones((clienteEntidad.getIdMascotas() != null) ?
+                clienteEntidad.getIdMascotas().stream().map(
+                      r -> {
+                        Mascota mascota = userService.getMascotaPorId(r);
+                        return GeolocalizacionArraySalida.builder()
+                              .geolocalizaciones(geolocalizacionAPI.getGeolocalizacionPorIdMascota(r))
+                              .mascotaNombre(mascota.getNombre() + " " + mascota.getApellido())
+                              .mascotaId(mascota.getId())
+                              .build();
+                      }
+                ).toList()
+                : new ArrayList<>())
           .build();
   }
 }
