@@ -45,7 +45,6 @@ public class VeterinarioRepositorio implements PanacheMongoRepository<Veterinari
             p.setEmail(veterinario.getEmail());
             p.setDocumento(veterinario.getDocumento());
             p.setIdTipoDocumento(veterinario.getIdTipoDocumento());
-            p.setPassword(veterinario.getPassword());
             p.setDelete(veterinario.getDelete());
             update(p);
             return p;

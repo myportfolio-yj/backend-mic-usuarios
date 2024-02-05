@@ -238,7 +238,7 @@ public class ClienteServicio implements IClienteServicio {
                               .mascotaId(mascota.getId())
                               .build();
                       }
-                ).toList()
+                ).filter(p -> !p.getGeolocalizaciones().isEmpty()).toList()
                 : new ArrayList<>())
           .build();
   }

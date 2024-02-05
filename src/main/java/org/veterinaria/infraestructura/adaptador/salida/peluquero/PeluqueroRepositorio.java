@@ -45,7 +45,6 @@ public class PeluqueroRepositorio implements PanacheMongoRepository<PeluqueroEnt
             p.setEmail(peluquero.getEmail());
             p.setDocumento(peluquero.getDocumento());
             p.setIdTipoDocumento(peluquero.getIdTipoDocumento());
-            p.setPassword(peluquero.getPassword());
             p.setDelete(peluquero.getDelete());
             update(p);
             return p;
