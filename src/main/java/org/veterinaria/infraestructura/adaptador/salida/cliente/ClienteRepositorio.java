@@ -44,6 +44,7 @@ public class ClienteRepositorio implements PanacheMongoRepository<ClienteEntidad
             p.setDocumento(cliente.getDocumento());
             p.setIdTipoDocumento(cliente.getIdTipoDocumento());
             p.setDelete(cliente.getDelete());
+            p.setIdMascotas(cliente.getIdMascotas());
             update(p);
             return p;
           })
